@@ -1,12 +1,15 @@
-import re
-import os
+class test(object):
 
-str = [(True, {'checksum': 'ef18465d4b4510b29b40b2462526c719', 'path': 'full/e81f66bb819f021a1b7b51d3573617097a9d860d.jpg', 'url': 'https://static.oschina.net/uploads/space/2017/0614/102156_SGGq_1450051.png'})]
-
-
-
-[print(bb['path']) for aa,bb in str if aa]
-
+    def say(self):
+        yield 1
+        yield 2
+        yield 3
+        yield 4
 
 
+a = test()
 
+print(a.say())
+
+for i in a.say():
+    print(i)

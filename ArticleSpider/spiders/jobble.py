@@ -19,7 +19,6 @@ class JobbleSpider(scrapy.Spider):
 
             yield Request(url=parse.urljoin(response.url, article_detail_url), meta={'remote_img_url': remote_img_url}, callback=self.parse_detail)
 
-
         # 提取到下一页并进行下载
         next_url = response.css('.next::attr(href)').extract_first('')
         if next_url:
