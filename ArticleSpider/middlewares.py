@@ -7,7 +7,7 @@
 
 from scrapy import signals
 from fake_useragent import UserAgent
-
+from ArticleSpider.tools.xici_free_ip import GetIP
 
 class ArticlespiderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -67,7 +67,14 @@ class RandomUserAgentMiddlware(object):
         return cls(crawler)
 
     def process_request(self, request, spider):
+        # request.headers['User-Agent'] = self.ua.random
+        request.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
 
-        # request.headers.setdefault('User-Agent', self.ua.random)
-        request.headers['User-Agent'] = self.ua.random
-        # request.meta['proxy'] = 'http://139.59.165.94:8118'
+
+class RandomProxyMiddleware(object):
+    #动态设置ip代理
+    def process_request(self, request, spider):
+        get_ip = GetIP()
+        # request.meta['proxy'] = get_ip.get_random_ip()
+        request.meta['proxy'] = 'http://91.93.132.138:3128'
+
